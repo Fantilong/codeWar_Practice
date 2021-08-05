@@ -16,23 +16,28 @@
             let left = null
             let right = null
             let curFib = null
+            let isFalse = false
 
-            while (curFib <= prod && left * curFib !== prod) {
+            while (!left) {
                 curFib = fibs[fibs.length - 1] + fibs[fibs.length - 2]
 
-                if (!fibs.every(fib => fib * curFib !== prod ? true : false)) {
-                    left = prod / curFib
-                } else {
-                    fibs.push(curFib)
+                for (let index = 0; index < fibs.length; index++) {
+                    if (fibs[index] * curFib > prod) {
+                        left = fibs[fibs[fibs.length - 1]]
+                        break
+                    }
+
+                    if (fibs[index] * curFib === prod) {
+                        left = fibs[index]
+                        isFalse = true
+                        break
+                    }
                 }
 
+                fibs.push(curFib)
             }
 
-            if (left === null) {
-                return [fibs[fibs.length - 2], curFib, false]
-            }
-
-            return [left, curFib, true]
+            return [left, curFib, isFalse]
         }
 
         console.log(productFib(4895))

@@ -41,3 +41,4 @@ Note:
 You can see examples for your language in "Sample Tests".
 
 # 这个题目错误的返回值设计不合理
+# 好吧，题目没读明白
