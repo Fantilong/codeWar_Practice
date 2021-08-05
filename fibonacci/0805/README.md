@@ -39,3 +39,5 @@ productFib(714) # should return {21, 34, true},
 productFib(800) # should return {34, 55, false}, 
 Note:
 You can see examples for your language in "Sample Tests".
+
+# 这个题目错误的返回值设计不合理

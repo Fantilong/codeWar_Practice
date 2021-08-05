@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function productFib(prod) {
+            if (prod === 0) return [0, 0, true]
+            let fibs = [0, 1]
+            let left = null
+            let right = null
+            let curFib = null
+
+            while (curFib <= prod && left * curFib !== prod) {
+                curFib = fibs[fibs.length - 1] + fibs[fibs.length - 2]
+
+                if (!fibs.every(fib => fib * curFib !== prod ? true : false)) {
+                    left = prod / curFib
+                } else {
+                    fibs.push(curFib)
+                }
+
+            }
+
+            if (left === null) {
+                return [fibs[fibs.length - 2], curFib, false]
+            }
+
+            return [left, curFib, true]
+        }
+
+        console.log(productFib(4895))
+
+    </script>
+
+</body>
+
+</html>
