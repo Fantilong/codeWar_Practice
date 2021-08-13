@@ -141,9 +141,42 @@
             }
         }
 
+        function humanReadable(seconds) {
+            if (!seconds) return '00:00:00'
+            const units = [60, 60]
+            const result = [0, 0, 0]
+
+            for (let index = 0; index <= units.length; index++) {
+                if (index === 2 && seconds > 0) {
+                    result[index] = seconds
+                    continue
+                }
+
+                if (seconds < units[index]) {
+                    result[index] = seconds
+                    break
+                }
+
+                let rest = seconds % units[index]
+                result[index] = rest
+                seconds = (seconds - rest) / units[index]
+            }
+
+            return result.map(item => {
+                if (item === 0) {
+                    item += '0'
+                }
+                else if (item < 10) {
+                    item = '0' + item
+                }
+
+                return item
+            }).reverse().join(':')
+        }
 
 
-        console.log(firstNonRepeatingLetter('moonmen'))
+
+        console.log(humanReadable(3452345))
 
     </script>
 

@@ -67,5 +67,43 @@ module.exports = {
         })
 
         return str
+    },
+
+    /**
+     * @description: 日期解析，非负秒数的数字，
+     * @param {Number} 2342
+     * @return {String} HH:MM:SS(00-99:00-59:00-59)
+    */
+    humanReadable (seconds) {
+        if (!seconds) return '00:00:00'
+            const units = [60, 60]
+            const result = [0, 0, 0]
+
+        for (let index = 0; index <= units.length; index++) {
+            if (index === 2 && seconds > 0) {
+                result[index] = seconds
+                continue
+            }
+
+            if (seconds < units[index]) {
+                result[index] = seconds
+                break
+            }
+
+            let rest = seconds % units[index]
+            result[index] = rest
+            seconds = (seconds - rest) / units[index]
+        }
+
+        return result.map(item => {
+            if (item === 0) {
+                item += '0'
+            }
+            else if (item < 10) {
+                item = '0' + item
+            }
+
+            return item
+        }).reverse().join(':')
     }
 }
