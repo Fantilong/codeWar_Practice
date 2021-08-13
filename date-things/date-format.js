@@ -1,4 +1,4 @@
-module.exports = {
+export default {
     /**
      * @description: 日期解析，秒数的数字，
      * @param {Number} 1
